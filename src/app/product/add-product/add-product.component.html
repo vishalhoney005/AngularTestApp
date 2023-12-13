@@ -1,0 +1,57 @@
+<h2 class="display-6 p-3">Add Product</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group" hidden>
+        <label class="form-label " for="id">ID</label>
+        <input class="form-control " type="number" id="id" formatControlName="id">
+
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="name">Name</label>
+        <input class="form-control " type="text" id="name" formControlName="name">
+        <div *ngIf="form.hasError('required','name') && (form.controls['name'].touched ||
+        form.controls['name'].dirty)" class="alert alert-danger" role="alert">
+            Name is required
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="price">Price</label>
+        <input class="form-control " type="number" id="price" formControlName="price">
+        <div *ngIf="form.hasError('required','price') && (form.controls['price'].touched ||
+        form.controls['price'].dirty)" class="alert alert-danger" role="alert">
+            Price is required
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="Category">Category</label>
+        <select class="form-select form-control " id="Category" required formControlName="categoryId">
+            <option selected>--Select Category</option>
+            <option *ngFor="let cat of list" value="{{cat.id}}">{{cat.name}}</option>
+
+        </select>
+        <div *ngIf="form.hasError('required','categoryId') && (form.controls['categoryId'].touched ||
+        form.controls['categoryId'].dirty)" class="alert alert-danger" role="alert">
+            Please Select a Category
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="manufacturedDate">Manufactured Date</label>
+        <input class="form-control " type="date" id="manufacturedDate" formControlName="manufacturedDate">
+        <div *ngIf="form.hasError('required','manufacturedDate') && (form.controls['manufacturedDate'].touched ||
+        form.controls['manufacturedDate'].dirty)" class="alert alert-danger" role="alert">
+            Date is required
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="imgurl">Image Url</label>
+        <input class="form-control " type="url" id="imgurl" formControlName="imageUrl">
+        <div *ngIf="form.hasError('required','imageUrl') && (form.controls['imageUrl'].touched ||
+        form.controls['imageUrl'].dirty)" class="alert alert-danger" role="alert">
+            Url is required
+        </div>
+    </div>
+    <div class="form-group">
+        <input class="m-3  btn btn-primary" type="submit" value="Add Product">
+
+    </div>
+
+</form>

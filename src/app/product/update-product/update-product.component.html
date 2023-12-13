@@ -1,0 +1,62 @@
+<h2 class="display-6 p-3">Update Product</h2>
+<form [formGroup]="form1" (ngSubmit)="submitPro()">
+    <div class="form-group" hidden>
+        <label class="form-label " for="id">Id</label>
+        <input class="form-control " type="number" id="id" formControlName="id">
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="name">Name</label>
+        <input class="form-control " type="text" id="name" formControlName="name">
+        <div *ngIf="form1.hasError('required','name') && (form1.controls['name'].touched ||
+        form1.controls['name'].dirty)" class="alert alert-danger" role="alert">
+            Name is required
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="price">Price</label>
+        <input class="form-control " type="number" id="price" formControlName="price">
+        <div *ngIf="form1.hasError('min','price') && (form1.controls['price'].touched ||
+        form1.controls['price'].dirty)" class="alert alert-danger" role="alert">
+            Minimum price is 1
+        </div>
+        <div *ngIf="form1.hasError('required','price') && (form1.controls['price'].touched ||
+        form1.controls['price'].dirty)" class="alert alert-danger" role="alert">
+            Price is required
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="categoryId">Category</label>
+        <select class="form-select" id="categoryId" formControlName="categoryId">
+            <option value="">Select</option>
+            <option *ngFor="let cat of list" value="{{cat.id}}">{{cat.name}}</option>
+ 
+        </select>
+        <div *ngIf="form1.hasError('required','categoryId') && (form1.controls['categoryId'].touched ||
+        form1.controls['categoryId'].dirty)" class="alert alert-danger" role="alert">
+            Please select a category
+        </div>
+    </div>
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="manufacturedDate">Manufacture Date</label>
+        <input class="form-control " type="date" id="manufacturedDate" formControlName="manufacturedDate">
+        <div *ngIf="form1.hasError('required','manufacturedDate') && (form1.controls['manufacturedDate'].touched ||
+        form1.controls['manufacturedDate'].dirty)" class="alert alert-danger" role="alert">
+            Date is required
+        </div>
+    </div>
+ 
+    <div class="form-group col-6 p-3  ">
+        <label class="form-label " for="imgUrl">Image-URL</label>
+        <input class="form-control " type="url" id="imgUrl" formControlName="imageUrl">
+        <div *ngIf="form1.hasError('required','imageUrl') && (form1.controls['imageUrl'].touched ||
+        form1.controls['imageUrl'].dirty)" class="alert alert-danger" role="alert">
+            Url is required
+        </div>
+    </div>
+ 
+    <div>
+        <input class="btn btn-primary" [disabled]="form1.invalid" type="submit" value="Submit">
+ 
+    </div>
+ 
+</form>

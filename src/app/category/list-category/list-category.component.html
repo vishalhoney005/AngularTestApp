@@ -1,0 +1,17 @@
+<h2>Category List</h2>
+
+<table class="table table-striped  table-hover   ">
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of list">
+            <!-- Data binding : interpolation -->
+            <td>{{category.id}}</td>
+            <td>{{category.name}}</td>
+            <td><button  class="btn btn-primary" [routerLink]="['/categories/edit/',category.id]">Edit</button></td>
+        </tr>
+    </tbody>
+</table>
